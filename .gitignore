@@ -1,1 +1,8 @@
 repos/
+bin/
+lib/
+topic_modeling/
+metadata.csv
+pip-selfcheck.json
+pyvenv.cfg
+__pycache__/
