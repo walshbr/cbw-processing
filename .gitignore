@@ -6,3 +6,8 @@ metadata.csv
 pip-selfcheck.json
 pyvenv.cfg
 __pycache__/
+pyLDAvis/
+.ipynb_checkpoints/
+Untitled.ipynb
+topic_modeling_input/
+topic_modeling_output_*
