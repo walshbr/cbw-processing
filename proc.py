@@ -3,10 +3,12 @@ from bs4 import BeautifulSoup
 # notes - lots of inconsistent filenaming - xml.xml; new.xml
 
 
+
 class Text(object):
     def __init__(self, fn):
         # TODO: differentiate bess from regular TEI. IE - does bess even have paragraph tags? it does not. so you'll have to get something else meaningful there.
         # TODO: dump the text of each doc into a file format that the topic modeling tool can use - entails pulling out relevant metadata
+        # TODO: basic frequency searching
         self.fn = fn
         print(fn)
         self.raw_text = self.read_text()
