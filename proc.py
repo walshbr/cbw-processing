@@ -50,32 +50,19 @@ class BessText(object):
         with open(self.fn, 'rb') as fin:
             return fin.read()
 
+
 class Corpus(object):
     def __init__(self, corpus_dir):
-        # check if there is a file in the folder called corpus.pkl
-        # if so, load it into this class. If not, create it from scratch.
-        self.create_or_load_corpus()
+        self.corpus_dir = corpus_dir
+        self.topic_modeling_output_dir = 'topic_modeling_input'
+        self.full_tei_fns, self.bess_fns = self.all_files()
+        self.bess_files = [BessText(fn) for fn in self.bess_fns]
+        self.full_tei_files = [TeiText(fn) for fn in self.full_tei_fns]
+        self.corpus_combined_tokens = self.flatten([fn.tokens for fn in
+                                                    self.full_tei_files])
+        self.processed_corpus_text = nltk.Text(self.corpus_combined_tokens)
+        # self.topic_model_dump()        
 
-    
-    def create_or_load_corpus(self):
-        is os.path.exists('corpus.pkl'):
-            with open('corpus.pkl', 'rb') as corpus_input:
-                self = pickle.load(corpus_input)
-        else:
-            self.corpus_dir = corpus_dir
-            self.topic_modeling_output_dir = 'topic_modeling_input'
-            self.full_tei_fns, self.bess_fns = self.all_files()
-            self.bess_files = [BessText(fn) for fn in self.bess_fns]
-            self.full_tei_files = [TeiText(fn) for fn in self.full_tei_fns]
-            self.corpus_combined_tokens = self.flatten([fn.tokens for fn in
-                                                        self.full_tei_files])
-            self.processed_corpus_text = nltk.Text(self.corpus_combined_tokens)
-            # self.topic_model_dump()
-        
-    def save_object(self, filename='corpus.pkl'):
-        with open(filename, 'wb') as output:
-            # Overwrites any existing file.
-            pickle.dump(self, output, pickle.HIGHEST_PROTOCOL)
         
     def flatten(self, a_list):
         return [j for i in a_list for j in i]
@@ -130,11 +117,9 @@ class Corpus(object):
             # TODO: find something meaningful for this
             with open(self.topic_modeling_output_dir + '/input_bess/' + os.path.basename(file.fn) + '.txt', 'w') as fin:
                 fin.write('nothing for now')
-
-
+                
 def main():
-    corpus_dir = 'repos/books/'
-    corpus = Corpus(corpus_dir)
+    corpus = Corpus('repos/books')
     
 if __name__ == '__main__':
     main()
