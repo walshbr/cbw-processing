@@ -1,14 +1,14 @@
-# given a text file, print the first 100 characters
+# given a text file, print the first 100 text characters of it
 
 text_path = 'repos/books/a001/a001.tei.xml'
 
 
 def read_file(path_to_text):
+    # take a file path and return the raw tei from it
     with open(path_to_text, 'r') as fin:
-        tei = fin.read()
-    return tei
+        raw_tei = fin.read()
+    return raw_tei
 
 
-text = read_file(text_path)
-
-print(text[0:100])
+raw_tei = read_file(text_path)
+print(raw_tei[0:100])
