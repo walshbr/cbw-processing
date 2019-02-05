@@ -4,6 +4,7 @@ import csv
 from bs4 import BeautifulSoup
 # notes - lots of inconsistent filenaming - xml.xml; new.xml
 
+
 class TeiText(object):
     def __init__(self, fn):
         # TODO: differentiate bess from regular TEI. IE - does bess even have paragraph tags? it does not. so you'll have to get something else meaningful there.
