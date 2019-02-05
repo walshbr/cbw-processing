@@ -2,7 +2,7 @@
 
 def read_file(path_to_text):
     # take a file path and return the raw tei from it
-    with open(path_to_text, 'r') as fin:
+    with open(path_to_text, 'rb') as fin:
         raw_tei = fin.read()
     return raw_tei
 

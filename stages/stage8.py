@@ -20,10 +20,10 @@ def read_and_process_text(path_to_text):
     # Note that here we have reorganized (programers would call it refactored)
     # Several related functions into a single one!
     # take a file path and return the raw text from it
-    with open(path_to_text, 'r') as fin:
+    with open(path_to_text, 'rb') as fin:
         raw_tei = fin.read()
     usable_tei = BeautifulSoup(raw_tei, 'lxml')
-    tokens = nltk.word_tokenize(usable_tei.text)
+    tokens = nltk.word_tokenize(usable_tei.find('text').text)
     return nltk.Text(tokens)
 
 
